@@ -824,7 +824,7 @@ class Plugin_Upgrader extends WP_Upgrader {
 	 * @since 2.8.0
 	 * @since 3.7.0 The `$args` parameter was added, making clearing the plugin update cache optional.
 	 *
-	 * @param string $plugins Array of the basename paths of the plugins' main files.
+	 * @param array  $plugins Array of the basename paths of the plugins' main files.
 	 * @param array  $args {
 	 *     Optional. Other arguments for upgrading several plugins at once. Default empty array.
 	 *
@@ -1351,7 +1351,7 @@ class Theme_Upgrader extends WP_Upgrader {
 	 * @since 3.0.0
 	 * @since 3.7.0 The `$args` parameter was added, making clearing the update cache optional.
 	 *
-	 * @param string $themes The theme slugs.
+	 * @param array  $themes The theme slugs.
 	 * @param array  $args {
 	 *     Optional. Other arguments for upgrading several themes at once. Default empty array.
 	 *
