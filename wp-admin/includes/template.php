@@ -118,16 +118,17 @@ class Walker_Category_Checklist extends Walker {
  *
  * @since 2.5.1
  *
- * @todo Properly document optional arguments as such.
- *
  * @see wp_terms_checklist()
  *
- * @param int $post_id Mark categories associated with this post as checked. $selected_cats must not be an array.
- * @param int $descendants_and_self ID of the category to output along with its descendents.
- * @param bool|array $selected_cats List of categories to mark as checked.
- * @param bool|array $popular_cats Override the list of categories that receive the "popular-category" class.
- * @param object $walker Walker object to use to build the output.
- * @param bool $checked_ontop Move checked items out of the hierarchy and to the top of the list.
+ * @param int        $post_id              Optional. Mark categories associated with this post as checked.
+ *                                         $selected_cats must not be an array. Default 0.
+ * @param int        $descendants_and_self Optional. ID of the category to output along with its descendents. Default 0.
+ * @param bool|array $selected_cats        Optional. List of categories to mark as checked. Default false.
+ * @param bool|array $popular_cats         Optional. Override the list of categories that receive the "popular-category"
+ *                                         class. Default false.
+ * @param object     $walker               Optional. Walker object to use to build the output. Default null.
+ * @param bool       $checked_ontop        Optional. Move checked items out of the hierarchy and to the top of the list.
+ *                                         Default true.
  */
 function wp_category_checklist( $post_id = 0, $descendants_and_self = 0, $selected_cats = false, $popular_cats = false, $walker = null, $checked_ontop = true ) {
 	wp_terms_checklist( $post_id, array(
@@ -147,10 +148,8 @@ function wp_category_checklist( $post_id = 0, $descendants_and_self = 0, $select
  *
  * @since 3.0.0
  *
- * @todo Properly document optional default arguments.
- *
- * @param int   $post_id Post ID.
- * @param array $args    Arguments to form the terms checklist.
+ * @param int   $post_id Optional. Post ID. Default 0.
+ * @param array $args    Optional. Arguments to form the terms checklist. Default array().
  */
 function wp_terms_checklist( $post_id = 0, $args = array() ) {
  	$defaults = array(
@@ -328,9 +327,8 @@ function wp_link_category_checklist( $link_id = 0 ) {
 	}
 }
 
-// adds hidden fields with the data for use in the inline editor for posts and pages
 /**
- * {@internal Missing Short Description}}
+ * Adds hidden fields with the data for use in the inline editor for posts and pages.
  *
  * @since 2.7.0
  *
@@ -1316,15 +1314,13 @@ function do_settings_fields($page, $section) {
  *
  * @since 3.0.0
  *
- * @todo Properly document optional arguments as such.
- *
  * @global array $wp_settings_errors Storage array of errors registered during this pageload
  *
  * @param string $setting Slug title of the setting to which this error applies
  * @param string $code    Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
  * @param string $message The formatted message text to display to the user (will be shown inside styled
  *                        `<div>` and `<p>` tags).
- * @param string $type    The type of message it is, controls HTML class. Use 'error' or 'updated'.
+ * @param string $type    Optional. Message type, controls HTML class. Use 'error' or 'updated'. Default 'error'.
  */
 function add_settings_error( $setting, $code, $message, $type = 'error' ) {
 	global $wp_settings_errors;
@@ -1516,7 +1512,6 @@ function _draft_or_post_title( $post = 0 ) {
  * should only be used when {@link the_search_query()} cannot.
  *
  * @since 2.7.0
- *
  */
 function _admin_search_query() {
 	echo isset($_REQUEST['s']) ? esc_attr( wp_unslash( $_REQUEST['s'] ) ) : '';
@@ -1528,7 +1523,6 @@ function _admin_search_query() {
  * @since 2.7.0
  * @param string $title Title of the Iframe page.
  * @param bool $limit_styles Limit styles to colour-related styles only (unless others are enqueued).
- *
  */
 function iframe_header( $title = '', $limit_styles = false ) {
 	show_admin_bar( false );
@@ -1603,7 +1597,6 @@ document.body.className = c;
  * Generic Iframe footer for use with Thickbox
  *
  * @since 2.7.0
- *
  */
 function iframe_footer() {
 	/*
@@ -1813,6 +1806,7 @@ function submit_button( $text = null, $type = 'primary', $name = 'submit', $wrap
  *                     These attributes will be output as attribute="value", such as tabindex="1".
  *                     Defaults to no other attributes. Other attributes can also be provided as a
  *                     string such as 'tabindex="1"', though the array format is typically cleaner.
+ * @return string Submit button HTML.
  */
 function get_submit_button( $text = null, $type = 'primary large', $name = 'submit', $wrap = true, $other_attributes = null ) {
 	if ( ! is_array( $type ) )
@@ -1900,6 +1894,8 @@ final class WP_Internal_Pointers {
 	 *
 	 * Individual pointers (e.g. wp390_widgets) can be disabled using the following:
 	 *     remove_action( 'admin_print_footer_scripts', array( 'WP_Internal_Pointers', 'pointer_wp390_widgets' ) );
+	 *
+	 * @param string $hook_suffix The current admin page.
 	 */
 	public static function enqueue_scripts( $hook_suffix ) {
 		/*
@@ -2067,6 +2063,8 @@ final class WP_Internal_Pointers {
 	 * Prevents new users from seeing existing 'new feature' pointers.
 	 *
 	 * @since 3.3.0
+	 *
+	 * @param int $user_id User ID.
 	 */
 	public static function dismiss_pointers_for_new_users( $user_id ) {
 		add_user_meta( $user_id, 'dismissed_wp_pointers', 'wp360_locks,wp390_widgets' );
