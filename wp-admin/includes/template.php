@@ -406,12 +406,12 @@ function get_inline_data($post) {
  *
  * @since 2.7.0
  *
- * @param int $position
- * @param bool $checkbox
+ * @param int    $position
+ * @param bool   $checkbox
  * @param string $mode
- * @param bool $table_row
+ * @param bool   $table_row
  */
-function wp_comment_reply($position = '1', $checkbox = false, $mode = 'single', $table_row = true) {
+function wp_comment_reply($position = 1, $checkbox = false, $mode = 'single', $table_row = true) {
 	global $wp_list_table;
 	/**
 	 * Filter the in-line comment reply-to form output in the Comments
@@ -843,9 +843,9 @@ function parent_dropdown( $default = 0, $parent = 0, $level = 0 ) {
  *
  * @since 2.1.0
  *
- * @param string $selected slug for the role that should be already selected
+ * @param string $selected Slug for the role that should be already selected.
  */
-function wp_dropdown_roles( $selected = false ) {
+function wp_dropdown_roles( $selected = '' ) {
 	$p = '';
 	$r = '';
 
@@ -853,7 +853,7 @@ function wp_dropdown_roles( $selected = false ) {
 
 	foreach ( $editable_roles as $role => $details ) {
 		$name = translate_user_role($details['name'] );
-		if ( $selected == $role ) // preselect specified role
+		if ( $selected === $role ) // preselect specified role
 			$p = "\n\t<option selected='selected' value='" . esc_attr($role) . "'>$name</option>";
 		else
 			$r .= "\n\t<option value='" . esc_attr($role) . "'>$name</option>";
@@ -1814,7 +1814,7 @@ function submit_button( $text = null, $type = 'primary', $name = 'submit', $wrap
  *                     Defaults to no other attributes. Other attributes can also be provided as a
  *                     string such as 'tabindex="1"', though the array format is typically cleaner.
  */
-function get_submit_button( $text = null, $type = 'primary large', $name = 'submit', $wrap = true, $other_attributes = null ) {
+function get_submit_button( $text = '', $type = 'primary large', $name = 'submit', $wrap = true, $other_attributes = '' ) {
 	if ( ! is_array( $type ) )
 		$type = explode( ' ', $type );
 
