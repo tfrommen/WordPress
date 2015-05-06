@@ -495,7 +495,7 @@ do_action( 'edit_form_before_permalink', $post );
 ?>
 <div class="inside">
 <?php
-$sample_permalink_html = $post_type_object->public ? get_sample_permalink_html($post->ID) : '';
+$sample_permalink_html = $post_type_object->publicly_queryable ? get_sample_permalink_html($post->ID) : '';
 $shortlink = wp_get_shortlink($post->ID, 'post');
 
 if ( !empty( $shortlink ) && $shortlink !== $permalink && $permalink !== home_url('?page_id=' . $post->ID) )
